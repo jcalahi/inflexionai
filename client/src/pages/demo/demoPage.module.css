@@ -1,0 +1,19 @@
+.container {
+  color: #3D3F54;;
+  margin: 27px auto 111px;
+  max-width: 813px;
+  height: 593px;
+  text-align: center;
+}
+
+.title {
+  font-family: Fraunces;
+  font-size: 27px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: DMSans;
+  font-size: 17px;
+}
