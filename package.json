@@ -1,0 +1,27 @@
+{
+  "name": "inflexionai",
+  "version": "1.0.0",
+  "description": "A test project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch server --inspect server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcalahi/inflexionai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcalahi/inflexionai/issues"
+  },
+  "homepage": "https://github.com/jcalahi/inflexionai#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
