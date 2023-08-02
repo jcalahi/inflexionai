@@ -7,6 +7,11 @@
 }
 
 .primary {
-  background: var(--orange300);
+  background-color: var(--orange300);
   color: var(--white);
+}
+
+.secondary {
+  background-color: var(--orange100);
+  color: var(--grey300);
 }

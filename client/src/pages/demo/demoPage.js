@@ -8,7 +8,7 @@ const DemoPage = () => {
   const navigate = useNavigate();
 
   const gotoHomePage = () => {
-    navigate("/home");
+    navigate("/");
   };
 
   return (
