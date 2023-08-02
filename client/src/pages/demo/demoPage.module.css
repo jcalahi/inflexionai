@@ -10,10 +10,17 @@
   font-family: Fraunces;
   font-size: 27px;
   font-weight: 600;
+  line-height: 38px;
   margin: 0;
 }
 
 .subtitle {
   font-family: DMSans;
   font-size: 17px;
+  line-height: 25px;
+}
+
+.iframe {
+  border: 0;
+  margin: 26px 0;
 }
