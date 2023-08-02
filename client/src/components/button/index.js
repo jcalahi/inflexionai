@@ -1,1 +1,1 @@
-export { Button, BUTTON_TYPE } from "./button";
+export { Button, BUTTON_STYLE } from "./button";

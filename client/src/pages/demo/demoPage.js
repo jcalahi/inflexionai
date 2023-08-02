@@ -1,14 +1,26 @@
-import classes from "./demoPage.module.css";
+import { useNavigate } from "react-router-dom";
+import { Button, BUTTON_STYLE } from "../../components/button";
+import { Text } from "../../components/text";
 import { ReactComponent as RecordIcon } from "../../assets/icons/record.svg";
-import { Button, BUTTON_TYPE } from "../../components/button";
+import classes from "./demoPage.module.css";
 
 const DemoPage = () => {
+  const navigate = useNavigate();
+
+  const gotoHomePage = () => {
+    navigate("/home");
+  };
+
   return (
     <div className={classes.container}>
-      <RecordIcon />
-      <h1 className={classes.title}>Audio Pen</h1>
-      <div className={classes.subtitle}>
-        Watch a demo of how AudioPen works.
+      <RecordIcon className={classes.cursorPointer} onClick={gotoHomePage} />
+      <div className={classes.cursorPointer} onClick={gotoHomePage}>
+        <Text className={classes.title}>Audio Pen</Text>
+      </div>
+      <div>
+        <Text className={classes.subtitle}>
+          Watch a demo of how AudioPen works.
+        </Text>
       </div>
       <iframe
         className={classes.iframe}
@@ -18,7 +30,9 @@ const DemoPage = () => {
         src="https://www.youtube.com/embed/FdWlhW-9Es4?autoplay=0"
       />
       <div>
-        <Button buttonType={BUTTON_TYPE.PRIMARY}>sign up/login</Button>
+        <Button buttonStyle={BUTTON_STYLE.PRIMARY}>
+          <Text className={classes.buttonText}>sign up/login</Text>
+        </Button>
       </div>
     </div>
   );
