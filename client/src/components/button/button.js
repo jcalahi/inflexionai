@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import classes from "./button.module.css";
+import classes from "./button.module.scss";
 
 export const BUTTON_STYLE = {
   PRIMARY: "primary",

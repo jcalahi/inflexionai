@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import classnames from "classnames";
 import { BUTTON_STYLE, Button } from "../../components/button";
 import { Text } from "../../components/text";
-import { ReactComponent as ProductIcon } from "../../assets/common/product.svg";
-import { ReactComponent as AccountIcon } from "../../assets/icons/account.svg";
-import { ReactComponent as SettingsIcon } from "../../assets/icons/settings.svg";
+import ProductIcon from "../../assets/common/product.svg";
+import AccountIcon from "../../assets/icons/account.svg";
+import SettingsIcon from "../../assets/icons/settings.svg";
 import classes from "./homePage.module.scss";
 import colors from "../../styles/colors.module.scss";
 
@@ -18,9 +18,9 @@ const HomePage = () => {
   return (
     <div className={classes.container}>
       <div className={classnames(classes.flexBetween, classes.mt20)}>
-        <AccountIcon />
-        <ProductIcon />
-        <SettingsIcon />
+        <img src={AccountIcon} alt="account icon" />
+        <img src={ProductIcon} alt="product hunt icon" />
+        <img src={SettingsIcon} alt="settings icon" />
       </div>
       <div>
         <Button buttonStyle={BUTTON_STYLE.PRIMARY}>

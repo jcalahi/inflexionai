@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, BUTTON_STYLE } from "../../components/button";
 import { Text } from "../../components/text";
 import { ReactComponent as RecordIcon } from "../../assets/icons/record.svg";
-import classes from "./demoPage.module.css";
+import classes from "./demoPage.module.scss";
 import colors from "../../styles/colors.module.scss";
 
 const DemoPage = () => {

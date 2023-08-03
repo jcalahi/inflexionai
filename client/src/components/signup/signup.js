@@ -1,4 +1,4 @@
-import classes from "./signup.module.css";
+import classes from "./signup.module.scss";
 
 const SignUp = () => {};
 

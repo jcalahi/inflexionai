@@ -1,3 +1,5 @@
+@import "../../styles/_colors.module.scss";
+
 .button {
   border: 0;
   border-radius: 60px;
@@ -7,11 +9,11 @@
 }
 
 .primary {
-  background-color: var(--orange300);
-  color: var(--white);
+  background-color: color(primary100);
+  color: color(primary25);
 }
 
 .secondary {
-  background-color: var(--orange100);
-  color: var(--grey300);
+  background-color: color(primary25);
+  color: color(grey300);
 }

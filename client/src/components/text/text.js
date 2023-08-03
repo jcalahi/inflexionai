@@ -1,8 +1,7 @@
 import classnames from "classnames";
-import classes from "./text.module.css";
+import classes from "./text.module.scss";
 
 const Text = ({ className, children, color }) => {
-  console.log(color);
   return (
     <span style={{ color }} className={classnames(classes.text, className)}>
       {children}
