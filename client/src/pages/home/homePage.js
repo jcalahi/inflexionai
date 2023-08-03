@@ -4,7 +4,7 @@ import { BUTTON_STYLE, Button } from "../../components/button";
 import { Text } from "../../components/text";
 import { ReactComponent as ProductIcon } from "../../assets/common/product.svg";
 import { ReactComponent as AccountIcon } from "../../assets/icons/account.svg";
-import { ReactComponent as SettingsIcon } from "../../assets/icons/settings.png";
+import { ReactComponent as SettingsIcon } from "../../assets/icons/settings.svg";
 import classes from "./homePage.module.scss";
 import colors from "../../styles/colors.module.scss";
 
