@@ -14,6 +14,7 @@ import RecordIcon from "../../assets/icons/record.svg";
 // styles
 import classes from "./homePage.module.scss";
 import colors from "../../styles/colors.module.scss";
+import { MenuIcon } from "../../components/menuIcon/menuIcon";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -25,9 +26,9 @@ const HomePage = () => {
   return (
     <div className={classes.container}>
       <div className={classnames(classes.flexBetween, classes.mt20)}>
-        <img src={AccountIcon} alt="account icon" />
+        <MenuIcon icon={AccountIcon} text="Account" />
         <img src={ProductIcon} alt="product hunt icon" />
-        <img src={SettingsIcon} alt="settings icon" />
+        <MenuIcon icon={SettingsIcon} text="Settings" textPosition="right" />
       </div>
       <div className={classes.content}>
         <div>
@@ -51,7 +52,7 @@ const HomePage = () => {
           </Text>
         </div>
         <div className={classes.buttonGroup}>
-          <Button buttonStyle={BUTTON_STYLE.PRIMARY}>
+          <Button buttonStyle={BUTTON_STYLE.PRIMARY} onClick={() => {}}>
             <Text className={classes.buttonText} color={colors.primary25}>
               sign up / log in
             </Text>
@@ -67,9 +68,13 @@ const HomePage = () => {
         </div>
       </div>
       <div className={classes.flexBetween}>
-        <img src={UploadIcon} alt="upload icon" />
+        <MenuIcon icon={UploadIcon} text="Upload Audio" />
         <img src={RecordIcon} alt="record icon" width="80" height="80" />
-        <img src={TextNoteIcon} alt="text note icon" />
+        <MenuIcon
+          icon={TextNoteIcon}
+          text="Rewrite a Text Note"
+          textPosition="right"
+        />
       </div>
     </div>
   );
