@@ -3,6 +3,7 @@ import { Button, BUTTON_STYLE } from "../../components/button";
 import { Text } from "../../components/text";
 import { ReactComponent as RecordIcon } from "../../assets/icons/record.svg";
 import classes from "./demoPage.module.css";
+import colors from "../../styles/colors.module.scss";
 
 const DemoPage = () => {
   const navigate = useNavigate();
@@ -31,7 +32,9 @@ const DemoPage = () => {
       />
       <div>
         <Button buttonStyle={BUTTON_STYLE.PRIMARY}>
-          <Text className={classes.buttonText}>sign up/login</Text>
+          <Text color={colors.primary25} className={classes.buttonText}>
+            sign up/login
+          </Text>
         </Button>
       </div>
     </div>

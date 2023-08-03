@@ -14,14 +14,9 @@ $primary_colors: (
   primary100: #ff5c0a
 );
 
-$colors: map_merge($grey_colors, $primary_colors);
+$colors_merge1: map_merge($grey_colors, $primary_colors);
+$colors: map_merge($colors_merge1, $base_colors);
 
 @function color($color) {
   @return map-get($colors, $color);
-}
-
-:export {
-  @each $key, $value in $colors {
-    #{$key}: $value;
-  }
 }
