@@ -1,19 +1,11 @@
 :root {
-  --grey100: #60637b;
-  --grey200: #4a4c5f;
-  --grey300: #3d3f54;
   --orange100: #f7f0f0;
-  --orange200: #ff6154;
   --orange300: #ff5c0a;
-  --white: #fff;
-}
-
-html {
-  height: 100%;
 }
 
 body {
   background: radial-gradient(70.71% 70.71% at 50% 50%, var(--orange300) 0%, var(--orange100) 50%, var(--orange100) 100%);
+  background-repeat: no-repeat;
   margin: 0;
 }
 
