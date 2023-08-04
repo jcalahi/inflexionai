@@ -30,9 +30,15 @@ const HomePage = () => {
     setShowModal(true);
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
-      <div className={classes.container}>
+      <div
+        className={classnames(classes.container, { [classes.blur]: showModal })}
+      >
         <div className={classnames(classes.flexBetween, classes.mt20)}>
           <MenuIcon icon={AccountIcon} text="Account" />
           <img src={ProductIcon} alt="product hunt icon" />
@@ -60,7 +66,10 @@ const HomePage = () => {
             </Text>
           </div>
           <div className={classes.buttonGroup}>
-            <Button buttonStyle={BUTTON_STYLE.PRIMARY} onClick={handleSignupClick}>
+            <Button
+              buttonStyle={BUTTON_STYLE.PRIMARY}
+              onClick={handleSignupClick}
+            >
               <Text className={classes.buttonText} color={colors.primary25}>
                 sign up / log in
               </Text>
@@ -85,7 +94,7 @@ const HomePage = () => {
           />
         </div>
       </div>
-    <SignUp show={showModal} />
+      <SignUp open={showModal} onClose={handleCloseModal} />
     </>
   );
 };
