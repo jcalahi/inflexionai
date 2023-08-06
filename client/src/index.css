@@ -8,6 +8,10 @@ body {
   background-repeat: no-repeat;
 }
 
+body::-webkit-scrollbar{
+  display: none;
+}
+
 @font-face {
   font-family: 'Fraunces';
   src: local('Fraunces'), url(fonts/Fraunces.ttf) format('truetype');
