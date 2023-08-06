@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import classnames from "classnames";
 import { BUTTON_STYLE, Button } from "../../components/button";
 import { Text } from "../../components/text";
+import { Card } from "../../components/card";
+import { SignUp } from "../../components/signup/signup";
+import { MenuIcon } from "../../components/menuIcon/menuIcon";
 // icons
 import AccountIcon from "../../assets/icons/account.svg";
 import ProductIcon from "../../assets/common/product.svg";
@@ -15,8 +18,6 @@ import RecordIcon from "../../assets/icons/record.svg";
 // styles
 import classes from "./homePage.module.scss";
 import colors from "../../styles/colors.module.scss";
-import { MenuIcon } from "../../components/menuIcon/menuIcon";
-import { SignUp } from "../../components/signup/signup";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -80,11 +81,14 @@ const HomePage = () => {
               </Text>
             </Button>
           </div>
-          <div className={classes.arrowLine}>
+          <div className={classes.lineArrow}>
             <img src={ArrowLineIcon} alt="arrow line icon" />
           </div>
         </div>
-        <div className={classes.flexBetween}>
+        <div className={classes.testimonials}>
+          <Card></Card>
+        </div>
+        <div className={classnames(classes.flexBetween, classes.stickyElement)}>
           <MenuIcon icon={UploadIcon} text="Upload Audio" />
           <img src={RecordIcon} alt="record icon" width="80" height="80" />
           <MenuIcon

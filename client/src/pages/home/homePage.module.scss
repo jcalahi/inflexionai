@@ -4,6 +4,7 @@
 
 .flexBetween {
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
 }
 
@@ -23,7 +24,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 136px 0 114px;
+  margin: 136px 0 620px;
 }
 
 .title {
@@ -71,15 +72,15 @@
   margin-bottom: 33px;
 }
 
-.lineArrow {
-  margin-bottom: 170px;
-}
-
 .stickyElement {
   position: sticky;
-  bottom: 20px;
+  bottom: 18px;
 }
 
 .blur {
   filter: blur(10px);
+}
+
+.testimonials {
+
 }
