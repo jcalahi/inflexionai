@@ -6,6 +6,7 @@
 body {
   background: radial-gradient(70.71% 70.71% at 50% 50%, var(--orange300) 0%, var(--orange100) 50%, var(--orange100) 100%);
   background-repeat: no-repeat;
+  margin: 0;
 }
 
 body::-webkit-scrollbar{

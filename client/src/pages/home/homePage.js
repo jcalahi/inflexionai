@@ -6,7 +6,6 @@ import { Text } from "../../components/text";
 import { Card } from "../../components/card";
 import { SignUp } from "../../components/signup/signup";
 import { MenuIcon } from "../../components/menuIcon/menuIcon";
-// icons
 import AccountIcon from "../../assets/icons/account.svg";
 import ProductIcon from "../../assets/common/product.svg";
 import SettingsIcon from "../../assets/icons/settings.svg";
@@ -15,9 +14,9 @@ import UploadIcon from "../../assets/icons/upload.svg";
 import ArrowLineIcon from "../../assets/icons/arrow_line.svg";
 import BarIcon from "../../assets/icons/bar.svg";
 import RecordIcon from "../../assets/icons/record.svg";
-// styles
 import classes from "./homePage.module.scss";
 import colors from "../../styles/colors.module.scss";
+import { loremIpsum } from "lorem-ipsum";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -34,6 +33,13 @@ const HomePage = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
+  console.log(
+    loremIpsum({
+      count: Math.floor(Math.random() * 5) + 1,
+      units: "paragraphs",
+    })
+  );
 
   return (
     <>
@@ -86,7 +92,12 @@ const HomePage = () => {
           </div>
         </div>
         <div className={classes.testimonials}>
-          <Card></Card>
+          <Card>
+            {loremIpsum({
+              count: Math.floor(Math.random() * 5) + 1,
+              units: "paragraphs",
+            })}
+          </Card>
         </div>
         <div className={classnames(classes.flexBetween, classes.stickyElement)}>
           <MenuIcon icon={UploadIcon} text="Upload Audio" />

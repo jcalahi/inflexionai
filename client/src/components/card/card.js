@@ -1,9 +1,9 @@
 import classes from "./card.module.scss";
 
-const Card = () => {
+const Card = ({ children }) => {
   return (
     <div className={classes.card}>
-      <div></div>
+      <div style={{ whiteSpace: "pre-line" }}>{children}</div>
     </div>
   );
 };
