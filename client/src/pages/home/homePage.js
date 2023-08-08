@@ -34,12 +34,9 @@ const HomePage = () => {
     setShowModal(false);
   };
 
-  console.log(
-    loremIpsum({
-      count: Math.floor(Math.random() * 5) + 1,
-      units: "paragraphs",
-    })
-  );
+  const handleRecordClick = () => {
+    navigate("/record");
+  };
 
   return (
     <>
@@ -101,7 +98,14 @@ const HomePage = () => {
         </div>
         <div className={classnames(classes.flexBetween, classes.stickyElement)}>
           <MenuIcon icon={UploadIcon} text="Upload Audio" />
-          <img src={RecordIcon} alt="record icon" width="80" height="80" />
+          <img
+            style={{ cursor: "pointer" }}
+            src={RecordIcon}
+            alt="record icon"
+            width="80"
+            height="80"
+            onClick={handleRecordClick}
+          />
           <MenuIcon
             icon={TextNoteIcon}
             text="Rewrite a Text Note"
