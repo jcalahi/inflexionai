@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { HomePage } from "./pages/home";
 import { DemoPage } from "./pages/demo";
-import RecordPage from "./pages/record/record";
 
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
@@ -17,7 +16,6 @@ root.render(
       <Routes>
         <Route index path="/" element={<HomePage />} />
         <Route path="/demo" element={<DemoPage />} />
-        <Route path="/record" element={<RecordPage />} />
       </Routes>
     </BrowserRouter>
   </div>

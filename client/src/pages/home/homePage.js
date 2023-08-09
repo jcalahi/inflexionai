@@ -20,6 +20,8 @@ import { loremIpsum } from "lorem-ipsum";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+
   const navigate = useNavigate();
 
   const gotoDemoPage = () => {
@@ -35,7 +37,7 @@ const HomePage = () => {
   };
 
   const handleRecordClick = () => {
-    navigate("/record");
+    setIsRecording(true);
   };
 
   return (
@@ -63,13 +65,21 @@ const HomePage = () => {
             </Text>
             <Text className={classes.subtitle_secondary}> Fast.</Text>
           </div>
-          <div className={classes.description}>
+          <div
+            className={classnames(classes.description, {
+              [classes.displayNone]: isRecording,
+            })}
+          >
             <Text className={classes.description_content}>
               {`Just hit record. Then start talking.
             AudioPen will clean things up when you're done.`}
             </Text>
           </div>
-          <div className={classes.buttonGroup}>
+          <div
+            className={classnames(classes.buttonGroup, {
+              [classes.displayNone]: isRecording,
+            })}
+          >
             <Button
               buttonStyle={BUTTON_STYLE.PRIMARY}
               onClick={handleSignupClick}
@@ -84,7 +94,11 @@ const HomePage = () => {
               </Text>
             </Button>
           </div>
-          <div className={classes.lineArrow}>
+          <div
+            className={classnames(classes.lineArrow, {
+              [classes.displayNone]: isRecording,
+            })}
+          >
             <img src={ArrowLineIcon} alt="arrow line icon" />
           </div>
         </div>
@@ -96,7 +110,11 @@ const HomePage = () => {
             })}
           </Card>
         </div>
-        <div className={classnames(classes.flexBetween, classes.stickyElement)}>
+        <div
+          className={classnames(classes.flexBetween, classes.stickyElement, {
+            [classes.displayNone]: isRecording,
+          })}
+        >
           <MenuIcon icon={UploadIcon} text="Upload Audio" />
           <img
             style={{ cursor: "pointer" }}
