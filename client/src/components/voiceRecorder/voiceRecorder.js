@@ -23,13 +23,14 @@ const showAlert = (err) => {
 const VoiceRecorder = ({ show, onClose }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [audioMotion, setAudioMotion] = useState();
-  const { mediaRecorder, startRecording, stopRecording } = useAudioRecorder(
-    {
-      noiseSuppression: true,
-      echoCancellation: true,
-    },
-    showAlert
-  );
+  const { mediaRecorder, recordingTime, startRecording, stopRecording } =
+    useAudioRecorder(
+      {
+        noiseSuppression: true,
+        echoCancellation: true,
+      },
+      showAlert
+    );
 
   useEffect(() => {
     const audioMotion = new AudioMotionAnalyzer(
@@ -81,11 +82,12 @@ const VoiceRecorder = ({ show, onClose }) => {
   };
 
   console.log(mediaRecorder);
+
   return (
     <div className={classes.container}>
       <div style={{ textAlign: "center" }}>
         <Text className={classes.timer} color={colors.primary25}>
-          02:33
+          {new Date(recordingTime * 1000).toISOString().substring(15, 19)}
         </Text>
       </div>
       <div className={classes.audio} id="audio"></div>
