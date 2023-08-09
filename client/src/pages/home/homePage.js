@@ -17,10 +17,11 @@ import RecordIcon from "../../assets/icons/record.svg";
 import classes from "./homePage.module.scss";
 import colors from "../../styles/colors.module.scss";
 import { loremIpsum } from "lorem-ipsum";
+import { VoiceRecorder } from "../../components/voiceRecorder";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
-  const [isRecording, setIsRecording] = useState(false);
+  const [showRecorder, setShowRecorder] = useState(false);
 
   const navigate = useNavigate();
 
@@ -37,7 +38,11 @@ const HomePage = () => {
   };
 
   const handleRecordClick = () => {
-    setIsRecording(true);
+    setShowRecorder(true);
+  };
+
+  const handleCloseRecorder = () => {
+    setShowRecorder(false);
   };
 
   return (
@@ -59,15 +64,21 @@ const HomePage = () => {
           <div>
             <img src={BarIcon} alt="bar icon" />
           </div>
-          <div className={classes.my_14}>
+          <div style={{ margin: "14px 0" }}>
             <Text className={classes.subtitle} color={colors.grey100}>
               Go from fuzzy thought to clear text.
             </Text>
             <Text className={classes.subtitle_secondary}> Fast.</Text>
           </div>
           <div
+            style={{ marginTop: "36px" }}
+            className={classnames({ [classes.displayNone]: !showRecorder })}
+          >
+            <VoiceRecorder show={showRecorder} onClose={handleCloseRecorder} />
+          </div>
+          <div
             className={classnames(classes.description, {
-              [classes.displayNone]: isRecording,
+              [classes.displayNone]: showRecorder,
             })}
           >
             <Text className={classes.description_content}>
@@ -77,7 +88,7 @@ const HomePage = () => {
           </div>
           <div
             className={classnames(classes.buttonGroup, {
-              [classes.displayNone]: isRecording,
+              [classes.displayNone]: showRecorder,
             })}
           >
             <Button
@@ -96,7 +107,7 @@ const HomePage = () => {
           </div>
           <div
             className={classnames(classes.lineArrow, {
-              [classes.displayNone]: isRecording,
+              [classes.displayNone]: showRecorder,
             })}
           >
             <img src={ArrowLineIcon} alt="arrow line icon" />
@@ -112,7 +123,7 @@ const HomePage = () => {
         </div>
         <div
           className={classnames(classes.flexBetween, classes.stickyElement, {
-            [classes.displayNone]: isRecording,
+            [classes.displayNone]: showRecorder,
           })}
         >
           <MenuIcon icon={UploadIcon} text="Upload Audio" />
