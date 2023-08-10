@@ -93,7 +93,7 @@ const VoiceRecorder = ({ onClose }) => {
     formData.append("recording", blob);
     const {
       data: { filename },
-    } = await axios.post("/api/fileupload", formData);
+    } = await axios.post("/api/transcribe", formData);
     return filename;
   };
 
