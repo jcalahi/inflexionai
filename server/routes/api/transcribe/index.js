@@ -21,13 +21,12 @@ const transcribeAudio = async (req, res, next) => {
     });
 
     const openai = new OpenAIApi(configuration);
-    const transcript = await openai.createTranscription(
+    const { data } = await openai.createTranscription(
       createReadStream("server/audio/recording.webm"),
       "whisper-1"
     );
-    console.log(transcript);
 
-    return res.json({ filename: "recording.webm" });
+    return res.json({ text: data.text });
   } catch (err) {
     console.error("An error encountered while uploading the audio.");
     next(err);
