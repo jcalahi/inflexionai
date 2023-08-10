@@ -4,7 +4,6 @@ const router = express.Router();
 
 const transcribeAudio = async (req, res, next) => {
   try {
-    return res.json({});
   } catch (err) {
     next(err);
   }

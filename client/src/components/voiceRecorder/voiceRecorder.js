@@ -25,14 +25,19 @@ const LIMIT = 180; // 3 mins
 const VoiceRecorder = ({ onClose }) => {
   const [audioMotion, setAudioMotion] = useState();
 
-  const { mediaRecorder, recordingTime, startRecording, stopRecording } =
-    useAudioRecorder(
-      {
-        noiseSuppression: true,
-        echoCancellation: true,
-      },
-      showAlert
-    );
+  const {
+    mediaRecorder,
+    recordingBlob,
+    recordingTime,
+    startRecording,
+    stopRecording,
+  } = useAudioRecorder(
+    {
+      noiseSuppression: true,
+      echoCancellation: true,
+    },
+    showAlert
+  );
 
   useEffect(() => {
     const audioMotion = new AudioMotionAnalyzer(
@@ -77,8 +82,19 @@ const VoiceRecorder = ({ onClose }) => {
     }
   }, [mediaRecorder, audioMotion, recordingTime, stopRecording]);
 
-  const uploadAudio = async () => {
-    await axios.post("/api/transcribe");
+  useEffect(() => {
+    if (recordingBlob) {
+      uploadAudio(recordingBlob);
+    }
+  }, [recordingBlob]);
+
+  const uploadAudio = async (blob) => {
+    const formData = new FormData();
+    formData.append("recording", blob);
+    const {
+      data: { filename },
+    } = await axios.post("/api/fileupload", formData);
+    return filename;
   };
 
   const handleRestartBtn = () => {};
@@ -92,7 +108,6 @@ const VoiceRecorder = ({ onClose }) => {
   const handleStopBtn = () => {
     stopRecording();
     audioMotion.disconnectInput();
-    uploadAudio();
   };
 
   return (
