@@ -10,7 +10,6 @@ import colors from "../../styles/colors.module.scss";
 import classes from "./voiceRecorder.module.scss";
 
 const propTypes = {
-  show: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
@@ -20,29 +19,24 @@ const showAlert = (err) => {
   }
 };
 
-const VoiceRecorder = ({ show, onClose }) => {
-  const [isRecording, setIsRecording] = useState(false);
+const LIMIT = 180; // 3 mins
+
+const VoiceRecorder = ({ onClose }) => {
   const [audioMotion, setAudioMotion] = useState();
 
-  const {
-    mediaRecorder,
-    recordingBlob,
-    recordingTime,
-    startRecording,
-    stopRecording,
-  } = useAudioRecorder(
-    {
-      noiseSuppression: true,
-      echoCancellation: true,
-    },
-    showAlert
-  );
+  const { mediaRecorder, recordingTime, startRecording, stopRecording } =
+    useAudioRecorder(
+      {
+        noiseSuppression: true,
+        echoCancellation: true,
+      },
+      showAlert
+    );
 
   useEffect(() => {
     const audioMotion = new AudioMotionAnalyzer(
       document.getElementById("audio"),
       {
-        gradient: "steelblue",
         height: 60,
         overlay: true,
         bgAlpha: 0,
@@ -54,21 +48,19 @@ const VoiceRecorder = ({ show, onClose }) => {
       }
     );
     setAudioMotion(audioMotion);
+
+    return () => {
+      if (audioMotion) {
+        audioMotion.disconnectInput();
+      }
+    };
   }, []);
 
+  // starts recording once the component is visible
   useEffect(() => {
-    if (show) {
-      setIsRecording(true);
-    }
-  }, [show]);
-
-  useEffect(() => {
-    if (isRecording) {
-      startRecording();
-    } else {
-      stopRecording();
-    }
-  }, [isRecording, startRecording, stopRecording, audioMotion]);
+    startRecording();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (mediaRecorder) {
@@ -78,24 +70,23 @@ const VoiceRecorder = ({ show, onClose }) => {
       audioMotion.connectInput(stream);
       audioMotion.volume = 0;
     }
-  }, [mediaRecorder, audioMotion]);
-
-  const handleRestartBtn = () => {
-    if (!isRecording) {
-      setIsRecording(true);
+    if (recordingTime === LIMIT) {
+      stopRecording();
     }
-  };
+  }, [mediaRecorder, audioMotion, recordingTime, stopRecording]);
+
+  const handleRestartBtn = () => {};
 
   const handleCloseBtn = () => {
-    setIsRecording(false);
+    stopRecording();
+    audioMotion.disconnectInput();
     onClose();
   };
 
   const handleStopBtn = () => {
-    setIsRecording(false);
+    stopRecording();
+    audioMotion.disconnectInput();
   };
-
-  console.log({ mediaRecorder, recordingBlob });
 
   return (
     <div className={classes.container}>

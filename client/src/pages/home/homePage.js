@@ -70,12 +70,11 @@ const HomePage = () => {
             </Text>
             <Text className={classes.subtitle_secondary}> Fast.</Text>
           </div>
-          <div
-            style={{ marginTop: "36px" }}
-            className={classnames({ [classes.displayNone]: !showRecorder })}
-          >
-            <VoiceRecorder show={showRecorder} onClose={handleCloseRecorder} />
-          </div>
+          {showRecorder && (
+            <div style={{ marginTop: "36px" }}>
+              <VoiceRecorder onClose={handleCloseRecorder} />
+            </div>
+          )}
           <div
             className={classnames(classes.description, {
               [classes.displayNone]: showRecorder,
