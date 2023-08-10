@@ -17,11 +17,12 @@ import RecordIcon from "../../assets/icons/record.svg";
 import classes from "./homePage.module.scss";
 import colors from "../../styles/colors.module.scss";
 import { loremIpsum } from "lorem-ipsum";
-import { VoiceRecorder } from "../../components/voiceRecorder";
+import { AudioRecorder } from "../../containers/audioRecorder";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [showRecorder, setShowRecorder] = useState(false);
+  const [recordBlob, setRecordBlob] = useState();
 
   const navigate = useNavigate();
 
@@ -43,6 +44,10 @@ const HomePage = () => {
 
   const handleCloseRecorder = () => {
     setShowRecorder(false);
+  };
+
+  const handleRecordBlob = (blob) => {
+    setRecordBlob(blob);
   };
 
   return (
@@ -70,9 +75,12 @@ const HomePage = () => {
             </Text>
             <Text className={classes.subtitle_secondary}> Fast.</Text>
           </div>
-          {showRecorder && (
+          {!recordBlob && showRecorder && (
             <div style={{ marginTop: "36px" }}>
-              <VoiceRecorder onClose={handleCloseRecorder} />
+              <AudioRecorder
+                onClose={handleCloseRecorder}
+                onRecordBlob={handleRecordBlob}
+              />
             </div>
           )}
           <div

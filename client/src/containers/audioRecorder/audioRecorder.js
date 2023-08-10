@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useAudioRecorder } from "react-audio-voice-recorder";
 import AudioMotionAnalyzer from "audiomotion-analyzer";
-import axios from "axios";
-import { Text } from "../text";
+import { Text } from "../../components/text";
 import RestartIcon from "../../assets/icons/restart.svg";
 import CloseIcon from "../../assets/icons/close.svg";
 import StopRecordIcon from "../../assets/icons/stop_record.svg";
 import colors from "../../styles/colors.module.scss";
-import classes from "./voiceRecorder.module.scss";
+import classes from "./audioRecorder.module.scss";
 
 const propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onRecordBlob: PropTypes.func.isRequired,
 };
 
 const showAlert = (err) => {
@@ -22,7 +22,7 @@ const showAlert = (err) => {
 
 const LIMIT = 180; // 3 mins
 
-const VoiceRecorder = ({ onClose }) => {
+const AudioRecorder = ({ onClose, onRecordBlob }) => {
   const [audioMotion, setAudioMotion] = useState();
 
   const {
@@ -84,18 +84,9 @@ const VoiceRecorder = ({ onClose }) => {
 
   useEffect(() => {
     if (recordingBlob) {
-      uploadAudio(recordingBlob);
+      onRecordBlob(recordingBlob);
     }
-  }, [recordingBlob]);
-
-  const uploadAudio = async (blob) => {
-    const formData = new FormData();
-    formData.append("recording", blob);
-    const {
-      data: { filename },
-    } = await axios.post("/api/fileupload", formData);
-    return filename;
-  };
+  }, [recordingBlob, onRecordBlob]);
 
   const handleRestartBtn = () => {};
 
@@ -132,6 +123,6 @@ const VoiceRecorder = ({ onClose }) => {
   );
 };
 
-VoiceRecorder.propTypes = propTypes;
+AudioRecorder.propTypes = propTypes;
 
-export { VoiceRecorder };
+export { AudioRecorder };

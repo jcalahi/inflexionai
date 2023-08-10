@@ -10,7 +10,7 @@ export const BUTTON_STYLE = {
 const propTypes = {
   buttonStyle: PropTypes.oneOf(Object.values(BUTTON_STYLE)).isRequired,
   children: PropTypes.node,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 const Button = ({ buttonStyle, className, children, onClick }) => {
