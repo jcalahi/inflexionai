@@ -1,7 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const multer = require("multer");
-const fs = require("fs");
+const fs = require("fs/promises");
+const createReadStream = require("fs").createReadStream;
 const { Configuration, OpenAIApi } = require("openai");
 
 const upload = multer();
@@ -11,18 +12,17 @@ dotenv.config();
 
 const transcribeAudio = async (req, res, next) => {
   try {
-    // await fs.writeFile("server/audio/recording.webm", req.file.buffer, {
-    //   flag: "w+",
-    // });
+    await fs.writeFile("server/audio/recording.webm", req.file.buffer, {
+      flag: "w+",
+    });
 
     const configuration = new Configuration({
       apiKey: process.env.OPENAI_API_KEY,
     });
 
     const openai = new OpenAIApi(configuration);
-
     const transcript = await openai.createTranscription(
-      fs.createReadStream("server/audio/recording.webm"),
+      createReadStream("server/audio/recording.webm"),
       "whisper-1"
     );
     console.log(transcript);
