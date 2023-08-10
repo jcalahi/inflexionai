@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useAudioRecorder } from "react-audio-voice-recorder";
 import AudioMotionAnalyzer from "audiomotion-analyzer";
+import axios from "axios";
 import { Text } from "../text";
 import RestartIcon from "../../assets/icons/restart.svg";
 import CloseIcon from "../../assets/icons/close.svg";
@@ -72,8 +73,13 @@ const VoiceRecorder = ({ onClose }) => {
     }
     if (recordingTime === LIMIT) {
       stopRecording();
+      audioMotion.disconnectInput();
     }
   }, [mediaRecorder, audioMotion, recordingTime, stopRecording]);
+
+  const uploadAudio = async () => {
+    await axios.post("/api/transcribe");
+  };
 
   const handleRestartBtn = () => {};
 
@@ -86,6 +92,7 @@ const VoiceRecorder = ({ onClose }) => {
   const handleStopBtn = () => {
     stopRecording();
     audioMotion.disconnectInput();
+    uploadAudio();
   };
 
   return (
