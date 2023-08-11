@@ -6,6 +6,7 @@ import { Text } from "../../components/text";
 import RestartIcon from "../../assets/icons/restart.svg";
 import CloseIcon from "../../assets/icons/close.svg";
 import StopRecordIcon from "../../assets/icons/stop_record.svg";
+import { RECORDING_LIMIT } from "../../constants";
 import colors from "../../styles/colors.module.scss";
 import classes from "./audioRecorder.module.scss";
 
@@ -19,8 +20,6 @@ const showAlert = (err) => {
     alert("You must allow your microphone.");
   }
 };
-
-const LIMIT = 180; // 3 mins
 
 const AudioRecorder = ({ onClose, onRecordBlob }) => {
   const [audioMotion, setAudioMotion] = useState();
@@ -76,7 +75,7 @@ const AudioRecorder = ({ onClose, onRecordBlob }) => {
       audioMotion.connectInput(stream);
       audioMotion.volume = 0;
     }
-    if (recordingTime === LIMIT) {
+    if (recordingTime === RECORDING_LIMIT) {
       stopRecording();
       audioMotion.disconnectInput();
     }
@@ -105,7 +104,9 @@ const AudioRecorder = ({ onClose, onRecordBlob }) => {
     <div className={classes.container}>
       <div style={{ textAlign: "center" }}>
         <Text className={classes.timer} color={colors.primary25}>
-          {new Date(recordingTime * 1000).toISOString().substring(15, 19)}
+          {new Date(RECORDING_LIMIT - recordingTime * 1000)
+            .toISOString()
+            .substring(15, 19)}
         </Text>
       </div>
       <div className={classes.audio} id="audio"></div>

@@ -1,5 +1,7 @@
 import classes from "./audioSummary.module.scss";
 
-const AudioSummary = () => {};
+const AudioSummary = () => {
+  return <div className={classes.container}></div>;
+};
 
 export { AudioSummary };

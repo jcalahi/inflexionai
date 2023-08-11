@@ -1,0 +1,13 @@
+@import "../../styles/_colors.module.scss";
+
+.container {
+  border-radius: 30px;
+  background: linear-gradient(27deg, rgba(255, 92, 10, 0.75) 0%, color(primary100) 50%, rgba(255, 92, 10, 0.85) 100%);
+  position: relative;
+  height: 233px;
+  width: 460px;
+
+  img {
+    cursor: pointer;
+  }
+}

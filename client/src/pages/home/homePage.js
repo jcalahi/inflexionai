@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classnames from "classnames";
+import { loremIpsum } from "lorem-ipsum";
 import { BUTTON_STYLE, Button } from "../../components/button";
 import { Text } from "../../components/text";
 import { Card } from "../../components/card";
 import { SignUp } from "../../components/signup/signup";
 import { MenuIcon } from "../../components/menuIcon/menuIcon";
+import { AudioRecorder } from "../../containers/audioRecorder";
+import { AudioSummary } from "../../containers/audioSummary";
 import AccountIcon from "../../assets/icons/account.svg";
 import ProductIcon from "../../assets/common/product.svg";
 import SettingsIcon from "../../assets/icons/settings.svg";
@@ -16,8 +19,6 @@ import BarIcon from "../../assets/icons/bar.svg";
 import RecordIcon from "../../assets/icons/record.svg";
 import classes from "./homePage.module.scss";
 import colors from "../../styles/colors.module.scss";
-import { loremIpsum } from "lorem-ipsum";
-import { AudioRecorder } from "../../containers/audioRecorder";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -47,7 +48,22 @@ const HomePage = () => {
   };
 
   const handleRecordBlob = (blob) => {
+    setShowRecorder(false);
     setRecordBlob(blob);
+  };
+
+  const renderAudioComponents = () => {
+    if (!recordBlob && showRecorder) {
+      return (
+        <AudioRecorder
+          onClose={handleCloseRecorder}
+          onRecordBlob={handleRecordBlob}
+        />
+      );
+    }
+    if (recordBlob && !showRecorder) {
+      return <AudioSummary recordBlob={recordBlob} />;
+    }
   };
 
   return (
@@ -69,23 +85,16 @@ const HomePage = () => {
           <div>
             <img src={BarIcon} alt="bar icon" />
           </div>
-          <div style={{ margin: "14px 0" }}>
+          <div style={{ margin: "14px 0 36px" }}>
             <Text className={classes.subtitle} color={colors.grey100}>
               Go from fuzzy thought to clear text.
             </Text>
             <Text className={classes.subtitle_secondary}> Fast.</Text>
           </div>
-          {!recordBlob && showRecorder && (
-            <div style={{ marginTop: "36px" }}>
-              <AudioRecorder
-                onClose={handleCloseRecorder}
-                onRecordBlob={handleRecordBlob}
-              />
-            </div>
-          )}
+          {renderAudioComponents()}
           <div
             className={classnames(classes.description, {
-              [classes.displayNone]: showRecorder,
+              [classes.displayNone]: showRecorder || recordBlob,
             })}
           >
             <Text className={classes.description_content}>
@@ -95,7 +104,7 @@ const HomePage = () => {
           </div>
           <div
             className={classnames(classes.buttonGroup, {
-              [classes.displayNone]: showRecorder,
+              [classes.displayNone]: showRecorder || recordBlob,
             })}
           >
             <Button
@@ -114,7 +123,7 @@ const HomePage = () => {
           </div>
           <div
             className={classnames(classes.lineArrow, {
-              [classes.displayNone]: showRecorder,
+              [classes.displayNone]: showRecorder || recordBlob,
             })}
           >
             <img src={ArrowLineIcon} alt="arrow line icon" />
@@ -130,7 +139,7 @@ const HomePage = () => {
         </div>
         <div
           className={classnames(classes.flexBetween, classes.stickyElement, {
-            [classes.displayNone]: showRecorder,
+            [classes.displayNone]: showRecorder || recordBlob,
           })}
         >
           <MenuIcon icon={UploadIcon} text="Upload Audio" />
