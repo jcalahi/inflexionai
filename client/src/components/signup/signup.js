@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Text } from "../text";
-import { Button, BUTTON_STYLE } from "../../components/button";
-import colors from "../../styles/colors.module.scss";
+import { Text } from "components/text";
+import { Button, BUTTON_STYLE } from "components/button";
+import colors from "styles/colors.module.scss";
 import classes from "./signup.module.scss";
 
 const propTypes = {

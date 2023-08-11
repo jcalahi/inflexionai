@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classnames from "classnames";
-import { Button, BUTTON_STYLE } from "../../components/button";
-import { Text } from "../../components/text";
-import { SignUp } from "../../components/signup/signup";
-import { ReactComponent as RecordIcon } from "../../assets/icons/record.svg";
+import { Button, BUTTON_STYLE } from "components/button";
+import { Text } from "components/text";
+import { SignUp } from "components/signup/signup";
+import { ReactComponent as RecordIcon } from "assets/icons/record.svg";
 import classes from "./demoPage.module.scss";
-import colors from "../../styles/colors.module.scss";
+import colors from "styles/colors.module.scss";
 
 const DemoPage = () => {
   const [showModal, setShowModal] = useState(false);

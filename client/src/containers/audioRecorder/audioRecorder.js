@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useAudioRecorder } from "react-audio-voice-recorder";
 import AudioMotionAnalyzer from "audiomotion-analyzer";
-import { Text } from "../../components/text";
-import RestartIcon from "../../assets/icons/restart.svg";
-import CloseIcon from "../../assets/icons/close.svg";
-import StopRecordIcon from "../../assets/icons/stop_record.svg";
-import { RECORDING_LIMIT } from "../../constants";
-import colors from "../../styles/colors.module.scss";
+import { Text } from "components/text";
+import RestartIcon from "assets/icons/restart.svg";
+import CloseIcon from "assets/icons/close.svg";
+import StopRecordIcon from "assets/icons/stop_record.svg";
+import { RECORDING_LIMIT } from "./constants";
+
+import colors from "styles/colors.module.scss";
 import classes from "./audioRecorder.module.scss";
 
 const propTypes = {

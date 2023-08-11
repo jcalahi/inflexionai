@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import { Text } from "../text";
+import { Text } from "components/text";
 import classes from "./menuIcon.module.scss";
 
 const propTypes = {
