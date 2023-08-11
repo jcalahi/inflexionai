@@ -8,3 +8,13 @@ export const uploadAudio = async (blob) => {
   } = await axios.post("/api/fileupload", formData);
   return filename;
 };
+
+export const transcribeFileContent = async (fileName) => {
+  const data = await axios.post("/api/transcribe", { fileName });
+  return data;
+};
+
+export const summarizeText = async (text) => {
+  const data = await axios.post("/api/summary", { text });
+  return data;
+};

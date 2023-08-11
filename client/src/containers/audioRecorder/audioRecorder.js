@@ -3,12 +3,16 @@ import { RecordController } from "./components/recordController";
 import { RecordBuilder } from "./components/recordBuilder";
 import classes from "./audioRecorder.module.scss";
 
-const AudioRecorder = ({ onClose }) => {
+const AudioRecorder = ({ onClose, onSummaryComplete }) => {
   const [blob, setBlob] = useState();
 
   const renderComponents = () => {
     return blob ? (
-      <RecordBuilder onCancel={onClose} blob={blob} />
+      <RecordBuilder
+        blob={blob}
+        onCancel={onClose}
+        onSummaryComplete={onSummaryComplete}
+      />
     ) : (
       <RecordController onClose={onClose} onBlobReady={setBlob} />
     );

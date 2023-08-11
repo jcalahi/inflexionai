@@ -45,9 +45,19 @@ const HomePage = () => {
     setShowRecorder(false);
   };
 
+  const handleSummaryComplete = (summary) => {
+    console.log(summary);
+    setShowRecorder(false);
+  };
+
   const renderRecorder = () => {
     if (showRecorder) {
-      return <AudioRecorder onClose={handleCloseRecorder} />;
+      return (
+        <AudioRecorder
+          onClose={handleCloseRecorder}
+          onSummaryComplete={handleSummaryComplete}
+        />
+      );
     }
   };
 

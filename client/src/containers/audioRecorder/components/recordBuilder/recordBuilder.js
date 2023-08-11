@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Text } from "components/text";
-import { uploadAudio } from "apis";
+import { summarizeText, transcribeFileContent, uploadAudio } from "apis";
 import SpinnerIcon from "assets/icons/spinner.svg";
 import colors from "styles/colors.module.scss";
 import classes from "./recordBuilder.module.scss";
 
-const RecordBuilder = ({ blob, onClose }) => {
+const RecordBuilder = ({ blob, onCancel, onSummaryComplete }) => {
   const [status, setStatus] = useState("(1/3) uploading...");
 
   useEffect(() => {
@@ -15,8 +15,14 @@ const RecordBuilder = ({ blob, onClose }) => {
   }, [blob]);
 
   const buildAudioSummary = async (blob) => {
-    await uploadAudio(blob);
+    const fileName = await uploadAudio(blob);
     setStatus("(2/3) transcribing...");
+    const {
+      data: { text },
+    } = await transcribeFileContent(fileName);
+    setStatus("(3/3) rewriting...");
+    const { data } = await summarizeText(text);
+    onSummaryComplete(data);
   };
 
   console.log(status);
