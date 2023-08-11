@@ -8,7 +8,6 @@ import { Card } from "components/card";
 import { SignUp } from "components/signup/signup";
 import { MenuIcon } from "components/menuIcon/menuIcon";
 import { AudioRecorder } from "containers/audioRecorder";
-import { AudioSummary } from "containers/audioSummary";
 import AccountIcon from "assets/icons/account.svg";
 import ProductIcon from "assets/common/product.svg";
 import SettingsIcon from "assets/icons/settings.svg";
@@ -23,7 +22,6 @@ import colors from "styles/colors.module.scss";
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [showRecorder, setShowRecorder] = useState(false);
-  const [recordBlob, setRecordBlob] = useState();
 
   const navigate = useNavigate();
 
@@ -47,22 +45,9 @@ const HomePage = () => {
     setShowRecorder(false);
   };
 
-  const handleRecordBlob = (blob) => {
-    setShowRecorder(false);
-    setRecordBlob(blob);
-  };
-
-  const renderAudioComponents = () => {
-    if (!recordBlob && showRecorder) {
-      return (
-        <AudioRecorder
-          onClose={handleCloseRecorder}
-          onRecordBlob={handleRecordBlob}
-        />
-      );
-    }
-    if (recordBlob && !showRecorder) {
-      return <AudioSummary recordBlob={recordBlob} />;
+  const renderRecorder = () => {
+    if (showRecorder) {
+      return <AudioRecorder onClose={handleCloseRecorder} />;
     }
   };
 
@@ -91,10 +76,10 @@ const HomePage = () => {
             </Text>
             <Text className={classes.subtitle_secondary}> Fast.</Text>
           </div>
-          {renderAudioComponents()}
+          {renderRecorder()}
           <div
             className={classnames(classes.description, {
-              [classes.displayNone]: showRecorder || recordBlob,
+              [classes.displayNone]: showRecorder,
             })}
           >
             <Text className={classes.description_content}>
@@ -104,7 +89,7 @@ const HomePage = () => {
           </div>
           <div
             className={classnames(classes.buttonGroup, {
-              [classes.displayNone]: showRecorder || recordBlob,
+              [classes.displayNone]: showRecorder,
             })}
           >
             <Button
@@ -123,7 +108,7 @@ const HomePage = () => {
           </div>
           <div
             className={classnames(classes.lineArrow, {
-              [classes.displayNone]: showRecorder || recordBlob,
+              [classes.displayNone]: showRecorder,
             })}
           >
             <img src={ArrowLineIcon} alt="arrow line icon" />
@@ -139,7 +124,7 @@ const HomePage = () => {
         </div>
         <div
           className={classnames(classes.flexBetween, classes.stickyElement, {
-            [classes.displayNone]: showRecorder || recordBlob,
+            [classes.displayNone]: showRecorder,
           })}
         >
           <MenuIcon icon={UploadIcon} text="Upload Audio" />
