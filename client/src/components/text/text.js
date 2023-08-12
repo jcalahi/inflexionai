@@ -1,5 +1,10 @@
+import PropTypes from "prop-types";
 import classnames from "classnames";
 import classes from "./text.module.scss";
+
+const propTypes = {
+  color: PropTypes.string,
+};
 
 const Text = ({ className, children, color }) => {
   return (
@@ -8,5 +13,7 @@ const Text = ({ className, children, color }) => {
     </span>
   );
 };
+
+Text.propTypes = propTypes;
 
 export { Text };

@@ -1,7 +1,13 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { RecordController } from "./components/recordController";
 import { RecordBuilder } from "./components/recordBuilder";
 import classes from "./audioRecorder.module.scss";
+
+const propTypes = {
+  onClose: PropTypes.func.isRequired,
+  onSummaryComplete: PropTypes.func.isRequired,
+};
 
 const AudioRecorder = ({ onClose, onSummaryComplete }) => {
   const [blob, setBlob] = useState();
@@ -20,5 +26,7 @@ const AudioRecorder = ({ onClose, onSummaryComplete }) => {
 
   return <div className={classes.container}>{renderComponents()}</div>;
 };
+
+AudioRecorder.propTypes = propTypes;
 
 export { AudioRecorder };

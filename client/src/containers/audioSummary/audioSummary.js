@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import moment from "moment";
 import { Text } from "components/text";
@@ -6,6 +7,10 @@ import CopyIcon from "assets/icons/copy.svg";
 import SaveIcon from "assets/icons/save.svg";
 import colors from "styles/colors.module.scss";
 import classes from "./audioSummary.module.scss";
+
+const propTypes = {
+  content: PropTypes.object.isRequired,
+};
 
 const AudioSummary = ({ content }) => {
   const [showTranscript, setShowTranscript] = useState(false);
@@ -60,5 +65,7 @@ const AudioSummary = ({ content }) => {
     </div>
   );
 };
+
+AudioSummary.propTypes = propTypes;
 
 export { AudioSummary };

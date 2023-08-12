@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { Text } from "components/text";
 import { useAudioRecorder } from "react-audio-voice-recorder";
@@ -12,6 +13,11 @@ import CloseIcon from "assets/icons/close.svg";
 import StopRecordIcon from "assets/icons/stop_record.svg";
 import colors from "styles/colors.module.scss";
 import classes from "./recordController.module.scss";
+
+const propTypes = {
+  onBlobReady: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
 
 const showAlert = (err) => {
   if (err) {
@@ -93,5 +99,7 @@ const RecordController = ({ onClose, onBlobReady }) => {
     </div>
   );
 };
+
+RecordController.propTypes = propTypes;
 
 export { RecordController };

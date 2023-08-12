@@ -7,6 +7,7 @@ import classes from "./signup.module.scss";
 
 const propTypes = {
   open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 const SignUp = ({ open, onClose }) => {

@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { Text } from "components/text";
 import { summarizeText, transcribeFileContent, uploadAudio } from "apis";
 import SpinnerIcon from "assets/icons/spinner.svg";
 import colors from "styles/colors.module.scss";
 import classes from "./recordBuilder.module.scss";
 import { RECORD_BUILDER_STATUS } from "./constants";
+
+const propTypes = {
+  blob: PropTypes.object.isRequired,
+  onCancel: PropTypes.func,
+  onSummaryComplete: PropTypes.func.isRequired,
+};
 
 const RecordBuilder = ({ blob, onCancel, onSummaryComplete }) => {
   const [status, setStatus] = useState(RECORD_BUILDER_STATUS.UPLOADING);
@@ -41,5 +48,7 @@ const RecordBuilder = ({ blob, onCancel, onSummaryComplete }) => {
     </div>
   );
 };
+
+RecordBuilder.prototypes = propTypes;
 
 export { RecordBuilder };
