@@ -20,21 +20,23 @@ const summarizeText = async (req, res, next) => {
       messages: [
         {
           role: "system",
-          content: "Simplify the text",
+          content:
+            "Return the answer as JSON object. First, generate a title of the content provided. The title should be less than 5 words. Second, write a short summary of the content. The sentences should contain few words.",
         },
         {
           role: "user",
           content: text,
         },
       ],
-      temperature: 0.8,
+      temperature: 0.2,
+      top_p: 0.1,
       max_tokens: 256,
-      top_p: 1,
+      n: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
     });
 
-    return res.json({ summary: data.choices });
+    return res.json({ message: JSON.parse(data.choices[0].message.content) });
   } catch (err) {
     console.error("An error encountered while summarizing the text.");
     next(err);

@@ -25,8 +25,6 @@ const RecordBuilder = ({ blob, onCancel, onSummaryComplete }) => {
     onSummaryComplete(data);
   };
 
-  console.log(status);
-
   return (
     <div className={classes.container}>
       <img className={classes.spinner} src={SpinnerIcon} alt="spinner icon" />
