@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import moment from "moment";
 import { Text } from "components/text";
+import BarIcon from "assets/icons/bar.svg";
 import TrashIcon from "assets/icons/trash.svg";
 import CopyIcon from "assets/icons/copy.svg";
 import SaveIcon from "assets/icons/save.svg";
@@ -33,6 +34,7 @@ const AudioSummary = ({ content }) => {
             {content.note.summary}
           </Text>
         </div>
+        <img src={BarIcon} alt="bar icon" />
         <div className={classes.summaryOptions}>
           <button className={classes.addTagBtn}>
             <Text color={colors.primary25}>+ add tag</Text>
