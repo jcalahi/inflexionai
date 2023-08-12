@@ -4,23 +4,25 @@ import { summarizeText, transcribeFileContent, uploadAudio } from "apis";
 import SpinnerIcon from "assets/icons/spinner.svg";
 import colors from "styles/colors.module.scss";
 import classes from "./recordBuilder.module.scss";
+import { RECORD_BUILDER_STATUS } from "./constants";
 
 const RecordBuilder = ({ blob, onCancel, onSummaryComplete }) => {
-  const [status, setStatus] = useState("(1/3) uploading...");
+  const [status, setStatus] = useState(RECORD_BUILDER_STATUS.UPLOADING);
 
   useEffect(() => {
     if (blob) {
       buildAudioSummary(blob);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blob]);
 
   const buildAudioSummary = async (blob) => {
     const fileName = await uploadAudio(blob);
-    setStatus("(2/3) transcribing...");
+    setStatus(RECORD_BUILDER_STATUS.TRANSCRIBING);
     const {
       data: { text },
     } = await transcribeFileContent(fileName);
-    setStatus("(3/3) rewriting...");
+    setStatus(RECORD_BUILDER_STATUS.REWRITING);
     const { data } = await summarizeText(text);
     onSummaryComplete(data);
   };

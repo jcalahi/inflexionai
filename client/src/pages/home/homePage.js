@@ -18,10 +18,12 @@ import BarIcon from "assets/icons/bar.svg";
 import RecordIcon from "assets/icons/record.svg";
 import classes from "./homePage.module.scss";
 import colors from "styles/colors.module.scss";
+import { AudioSummary } from "containers/audioSummary";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [showRecorder, setShowRecorder] = useState(false);
+  const [summary, setSummary] = useState();
 
   const navigate = useNavigate();
 
@@ -46,11 +48,12 @@ const HomePage = () => {
   };
 
   const handleSummaryComplete = (summary) => {
-    console.log(summary);
+    const { createdAt, note, transcript } = summary;
+    setSummary({ createdAt, note: JSON.parse(note), transcript });
     setShowRecorder(false);
   };
 
-  const renderRecorder = () => {
+  const renderComponents = () => {
     if (showRecorder) {
       return (
         <AudioRecorder
@@ -58,6 +61,9 @@ const HomePage = () => {
           onSummaryComplete={handleSummaryComplete}
         />
       );
+    }
+    if (summary) {
+      return <AudioSummary content={summary} />;
     }
   };
 
@@ -86,10 +92,10 @@ const HomePage = () => {
             </Text>
             <Text className={classes.subtitle_secondary}> Fast.</Text>
           </div>
-          {renderRecorder()}
+          {renderComponents()}
           <div
             className={classnames(classes.description, {
-              [classes.displayNone]: showRecorder,
+              [classes.displayNone]: showRecorder || summary,
             })}
           >
             <Text className={classes.description_content}>
@@ -99,7 +105,7 @@ const HomePage = () => {
           </div>
           <div
             className={classnames(classes.buttonGroup, {
-              [classes.displayNone]: showRecorder,
+              [classes.displayNone]: showRecorder || summary,
             })}
           >
             <Button
@@ -118,7 +124,7 @@ const HomePage = () => {
           </div>
           <div
             className={classnames(classes.lineArrow, {
-              [classes.displayNone]: showRecorder,
+              [classes.displayNone]: showRecorder || summary,
             })}
           >
             <img src={ArrowLineIcon} alt="arrow line icon" />
