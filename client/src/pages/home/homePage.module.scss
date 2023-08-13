@@ -34,6 +34,10 @@
   line-height: 67px;
 }
 
+.subtitleContainer {
+  margin: 14px 0 36px;
+}
+
 .subtitle {
   font-family: "DMSans";
   font-size: 28px;
@@ -81,15 +85,23 @@
   display: none;
 }
 
-.grid {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-left: -30px;
-  width: auto;
+.readMore {
+  margin-top: 40px;
+  text-align: center;
 }
 
-.column {
-  padding-left: 30px;
-  background-clip: padding-box;
+.footer {
+  border-top: 1px solid rgba(61, 63, 84, 0.20);
+  margin: 112px 0;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+
+  > img {
+    cursor: pointer;
+  }
 }

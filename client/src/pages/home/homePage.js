@@ -14,6 +14,8 @@ import UploadIcon from "assets/icons/upload.svg";
 import ArrowLineIcon from "assets/icons/arrow_line.svg";
 import BarIcon from "assets/icons/bar.svg";
 import RecordIcon from "assets/icons/record.svg";
+import LeftFooterLink from "assets/common/left_footer_links.svg";
+import RightFooterLink from "assets/common/right_footer_links.svg";
 import classes from "./homePage.module.scss";
 import colors from "styles/colors.module.scss";
 import { AudioSummary } from "containers/audioSummary";
@@ -91,15 +93,13 @@ const HomePage = () => {
           <MenuIcon icon={SettingsIcon} text="Settings" textPosition="right" />
         </div>
         <div className={classes.content}>
-          <div>
-            <Text className={classes.title} color={colors.grey100}>
-              AudioPen
-            </Text>
-          </div>
+          <Text className={classes.title} color={colors.grey100}>
+            AudioPen
+          </Text>
           <div>
             <img src={BarIcon} alt="bar icon" />
           </div>
-          <div style={{ margin: "14px 0 36px" }}>
+          <div className={classes.subtitleContainer}>
             <Text className={classes.subtitle} color={colors.grey100}>
               Go from fuzzy thought to clear text.
             </Text>
@@ -113,7 +113,7 @@ const HomePage = () => {
           >
             <Text className={classes.description_content}>
               {`Just hit record. Then start talking.
-            AudioPen will clean things up when you're done.`}
+                AudioPen will clean things up when you're done.`}
             </Text>
           </div>
           <div
@@ -143,16 +143,27 @@ const HomePage = () => {
             <img src={ArrowLineIcon} alt="arrow line icon" />
           </div>
         </div>
-        <div className={classes.testimonials}>
-          <Masonry columns={7} spacing={2}>
-            {testimonials.map((item) => {
-              return (
-                <Testimonial key={item.id} user={item}>
-                  {item.content}
-                </Testimonial>
-              );
-            })}
-          </Masonry>
+        <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 7 }} spacing={2}>
+          {testimonials.map((item) => {
+            return (
+              <Testimonial key={item.id} user={item}>
+                {item.content}
+              </Testimonial>
+            );
+          })}
+        </Masonry>
+        <div className={classes.readMore}>
+          <Button buttonStyle={BUTTON_STYLE.SECONDARY}>
+            <Text className={classes.buttonText} color={colors.grey100}>
+              read more Testimonials
+            </Text>
+          </Button>
+        </div>
+        <div className={classes.footer}>
+          <div className={classes.footerLinks}>
+            <img src={LeftFooterLink} alt="footer links" />
+            <img src={RightFooterLink} alt="footer links" />
+          </div>
         </div>
         <div
           className={classnames(classes.flexBetween, classes.stickyElement, {
