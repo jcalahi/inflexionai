@@ -1,10 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classnames from "classnames";
-import { loremIpsum } from "lorem-ipsum";
 import { BUTTON_STYLE, Button } from "components/button";
 import { Text } from "components/text";
-import { Card } from "components/card";
 import { SignUp } from "components/signup/signup";
 import { MenuIcon } from "components/menuIcon/menuIcon";
 import { AudioRecorder } from "containers/audioRecorder";
@@ -19,13 +17,28 @@ import RecordIcon from "assets/icons/record.svg";
 import classes from "./homePage.module.scss";
 import colors from "styles/colors.module.scss";
 import { AudioSummary } from "containers/audioSummary";
+import { Testimonial } from "components/testimonial";
+import { fetchTestimonials } from "apis";
+import Masonry from "@mui/lab/Masonry";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [showRecorder, setShowRecorder] = useState(false);
   const [summary, setSummary] = useState();
+  const [testimonials, setTestimonials] = useState([]);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const {
+        data: { users },
+      } = await fetchTestimonials();
+      setTestimonials(users);
+    };
+
+    fetchData();
+  }, []);
 
   const gotoDemoPage = () => {
     navigate("/demo");
@@ -131,12 +144,15 @@ const HomePage = () => {
           </div>
         </div>
         <div className={classes.testimonials}>
-          <Card>
-            {loremIpsum({
-              count: Math.floor(Math.random() * 5) + 1,
-              units: "paragraphs",
+          <Masonry columns={7} spacing={2}>
+            {testimonials.map((item) => {
+              return (
+                <Testimonial key={item.id} user={item}>
+                  {item.content}
+                </Testimonial>
+              );
             })}
-          </Card>
+          </Masonry>
         </div>
         <div
           className={classnames(classes.flexBetween, classes.stickyElement, {

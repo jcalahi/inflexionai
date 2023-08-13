@@ -18,3 +18,8 @@ export const summarizeText = async (text) => {
   const data = await axios.post("/api/summary", { text });
   return data;
 };
+
+export const fetchTestimonials = async () => {
+  const data = await axios.get("/api/testimonials");
+  return data;
+};
